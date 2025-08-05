@@ -9,10 +9,10 @@ function App() {
   return (
     <>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <div className="flex flex-col flex-1">
-        <header className="flex items-center justify-end px-4 py-2">      
-          <ModeToggle />
-        </header>
+        <div className="fixed top-0 right-0 p-2">
+          <header className="flex items-center justify-end">
+            <ModeToggle />
+          </header>
         </div>
         <h1>Smoke Shop</h1>
         <div className="card">
