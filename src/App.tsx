@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { ModeToggle } from "./components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Button } from "./components/ui/button";
+import { Label } from "@/components/ui/label"
+
 import "./App.css";
 
 function App() {
@@ -14,18 +17,13 @@ function App() {
             <ModeToggle />
           </header>
         </div>
-        <h1>Smoke Shop</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
+        
+        <div className="fixed top-1 left-2 p-4 card">
+          <h1>Smoke Shop</h1>
+          <Button size="default" onClick={() => setCount((count) => count + 1)}>
+            <Label>Primary count is {count}</Label>
+          </Button>
         </div>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
       </ThemeProvider>
     </>
   );
