@@ -1,12 +1,13 @@
 // components/home-carousel.tsx
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchItems } from "@/lib/api_client";
 
 export function HomeCarousel() {
   const [index, setIndex] = useState(0);
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<any[] | null>(null);
 
   useEffect(() => {
     fetchItems().then((data) => {
@@ -15,10 +16,18 @@ export function HomeCarousel() {
     });
   }, []);
 
-  if (items.length === 0) return null;
+  const prev = () => setIndex((index - 1 + (items?.length || 0)) % (items?.length || 1));
+  const next = () => setIndex((index + 1) % (items?.length || 1));
 
-  const prev = () => setIndex((index - 1 + items.length) % items.length);
-  const next = () => setIndex((index + 1) % items.length);
+  if (!items) {
+    return (
+      <div className="relative max-w-3xl mx-auto rounded-xl overflow-hidden">
+        <Skeleton className="h-64 w-full" />
+      </div>
+    );
+  }
+
+  if (items.length === 0) return null;
 
   const current = items[index];
 
