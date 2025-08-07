@@ -1,31 +1,25 @@
-import { useState } from "react";
-import { ModeToggle } from "./components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Button } from "./components/ui/button";
-import { Label } from "@/components/ui/label"
+import { ModeToggle } from "./components/mode-toggle";
+import { AppNavbar } from "./components/app-navbar";
+import { HomeCarousel } from "@/components/home-carousel";
 
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <div className="fixed top-0 right-0 p-2">
-          <header className="flex items-center justify-end">
-            <ModeToggle />
-          </header>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="min-h-screen bg-background text-foreground">
+        <header className="border-b">
+          <AppNavbar />
+        </header>
+        <main className="p-4">
+          <HomeCarousel />
+        </main>
+        <div className="fixed top-2 right-2">
+          <ModeToggle />
         </div>
-        
-        <div className="fixed top-1 left-2 p-4 card">
-          <h1>Smoke Shop</h1>
-          <Button size="default" onClick={() => setCount((count) => count + 1)}>
-            <Label>Primary count is {count}</Label>
-          </Button>
-        </div>
-      </ThemeProvider>
-    </>
+      </div>
+    </ThemeProvider>
   );
 }
 
